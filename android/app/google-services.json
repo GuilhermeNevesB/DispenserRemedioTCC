@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "545332087785",
+    "project_id": "dispenserremedio-6be60",
+    "storage_bucket": "dispenserremedio-6be60.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545332087785:android:4717fa043aeb35c9ad5978",
+        "android_client_info": {
+          "package_name": "com.meuapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_QOASqWUQ7_0JxPsugsA9G4OLw9O5lGA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

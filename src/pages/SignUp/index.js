@@ -1,4 +1,5 @@
-import React from 'react';
+//verificar se vamos deixar a funçao
+import React, {useContext} from 'react';
 import {
   View,
   Text,
@@ -7,7 +8,13 @@ import {
   StyleSheet,
 } from 'react-native';
 
+//verificar
+import {AuthContext} from '../../contexts/auth';
+
 export default function SignUp() {
+  //verificar
+  const {user} = useContext(AuthContext);
+
   return (
     <View style={styles.Background}>
       <View style={styles.Container}>
