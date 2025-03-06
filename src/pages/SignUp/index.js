@@ -1,33 +1,68 @@
 //verificar se vamos deixar a funçao
-import React, {useContext} from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  Alert,
 } from 'react-native';
 
 //verificar
-import {AuthContext} from '../../contexts/auth';
+
+import auth from '@react-native-firebase/auth';
 
 export default function SignUp() {
-  //verificar
-  const {user} = useContext(AuthContext);
+  //context
+
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+
+  const handleSignUp = async () => {
+    try {
+      const userCredential = await auth().createUserWithEmailAndPassword(
+        email,
+        senha,
+      );
+      await userCredential.user.updateProfile({
+        displayName: nome,
+      });
+      Alert.alert('Sucesso', 'Usuário cadastrado com sucesso!');
+    } catch (error) {
+      Alert.alert('Erro', error.message);
+    }
+  };
 
   return (
     <View style={styles.Background}>
       <View style={styles.Container}>
         <View style={styles.AreaInput}>
-          <TextInput style={styles.Input} placeholder="Nome" />
+          <TextInput
+            style={styles.Input}
+            placeholder="Nome"
+            value={nome}
+            onChangeText={setNome}
+          />
         </View>
         <View style={styles.AreaInput}>
-          <TextInput style={styles.Input} placeholder="Seu email" />
+          <TextInput
+            style={styles.Input}
+            placeholder="Seu email"
+            value={email}
+            onChangeText={setEmail}
+          />
         </View>
         <View style={styles.AreaInput}>
-          <TextInput style={styles.Input} placeholder="Sua senha" />
+          <TextInput
+            style={styles.Input}
+            placeholder="Sua senha"
+            value={senha}
+            onChangeText={setSenha}
+          />
         </View>
-        <TouchableOpacity style={styles.SubmitButton}>
+        <TouchableOpacity style={styles.SubmitButton} onPress={handleSignUp}>
           <Text style={styles.SubmitText}>Cadastrarrrrrr </Text>
         </TouchableOpacity>
       </View>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -6,25 +6,61 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
+
+//verificar como vai ser
 
 export default function SignIn() {
   const navigation = useNavigation();
+  //para login
+
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+
+  const handleSignIn = async () => {
+    try {
+      await auth().signInWithEmailAndPassword(email, senha);
+      Alert.alert('Sucesso', 'Login realizado com sucesso!');
+
+      //navigation.navigate('Home');
+    } catch (error) {
+      Alert.alert('Erro', error.message);
+    }
+  };
 
   return (
     <View style={styles.Background}>
       <View style={styles.Container}>
-        <Image style={styles.Logo} source={require('../../assets/Logo.png')} />
+        <Image
+          style={styles.Logo}
+          source={require('../../assets/remedio.png')}
+        />
 
         <View style={styles.AreaInput}>
-          <TextInput style={styles.Input} placeholder="Seu email" />
+          <TextInput
+            style={styles.Input}
+            placeholder="Seu email"
+            value={email}
+            onChangeText={setEmail}
+          />
         </View>
         <View style={styles.AreaInput}>
-          <TextInput style={styles.Input} placeholder="Sua senha" />
+          <TextInput
+            style={styles.Input}
+            placeholder="Sua senha"
+            secureTextEntry
+            value={senha}
+            onChangeText={setSenha}
+          />
         </View>
-        <TouchableOpacity style={styles.SubmitButton} activeOpacity={0.5}>
+        <TouchableOpacity
+          style={styles.SubmitButton}
+          activeOpacity={0.5}
+          onPress={handleSignIn}>
           <Text style={styles.SubmitText}>Acessar</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.Link}>
@@ -52,6 +88,8 @@ const styles = StyleSheet.create({
   },
   Logo: {
     marginBottom: 25,
+    width: 150,
+    height: 150,
   },
   AreaInput: {
     flexDirection: 'row',
