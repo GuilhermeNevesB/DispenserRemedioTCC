@@ -26,7 +26,19 @@ export default function SignIn() {
       await auth().signInWithEmailAndPassword(email, senha);
       Alert.alert('Sucesso', 'Login realizado com sucesso!');
 
-      //navigation.navigate('Home');
+      navigation.navigate('AppRoutes');
+
+      /*
+ver se vale usar
+  navigation.reset({
+        index: 0,
+        routes: [{name: 'AppRoutes'}],
+      });
+
+
+      */
+
+      //verificar
     } catch (error) {
       Alert.alert('Erro', error.message);
     }
