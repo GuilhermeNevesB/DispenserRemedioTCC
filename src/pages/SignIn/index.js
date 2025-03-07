@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   View,
   Text,
@@ -6,43 +6,20 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  Alert,
 } from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
-import auth from '@react-native-firebase/auth';
+import {AuthContext} from '../../contexts/auth';
 
 //verificar como vai ser
 
 export default function SignIn() {
+  const {handleSignIn} = useContext(AuthContext);
   const navigation = useNavigation();
   //para login
 
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-
-  const handleSignIn = async () => {
-    try {
-      await auth().signInWithEmailAndPassword(email, senha);
-      Alert.alert('Sucesso', 'Login realizado com sucesso!');
-
-      navigation.navigate('AppRoutes');
-
-      /*
-ver se vale usar
-  navigation.reset({
-        index: 0,
-        routes: [{name: 'AppRoutes'}],
-      });
-
-
-      */
-
-      //verificar
-    } catch (error) {
-      Alert.alert('Erro', error.message);
-    }
-  };
 
   return (
     <View style={styles.Background}>
@@ -72,7 +49,7 @@ ver se vale usar
         <TouchableOpacity
           style={styles.SubmitButton}
           activeOpacity={0.5}
-          onPress={handleSignIn}>
+          onPress={() => handleSignIn(email, senha)}>
           <Text style={styles.SubmitText}>Acessar</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.Link}>
