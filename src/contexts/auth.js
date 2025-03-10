@@ -13,16 +13,32 @@ function AuthProvider({children}) {
   async function handleSignIn(email, senha) {
     try {
       await auth().signInWithEmailAndPassword(email, senha);
+      const userAuth = auth().currentUser;
       Alert.alert('Sucesso', 'Login realizado com sucesso!');
+      // console.log('usuario', userAuth.displayName);
+      setUser({
+        email: email,
+        status: 'Ativo',
+        nome: userAuth.displayName,
+      });
 
-      // navigation.navigate('AppRoutes');
+      navigation.navigate('AppRoutes');
     } catch (error) {
-      Alert.alert('Erro', error.message);
+      if (error.name === 'TypeError') {
+        Alert.alert('Os campos nao podem estar vazios');
+      }
+      if (error.name === 'Error') {
+        Alert.alert('Erro desconhecdio');
+      } else {
+        //Alert.alert('Erro', error.message);
+        console.log('erro tipo ', error.message);
+        console.log('erro name ', error.name);
+      }
     }
   }
 
   return (
-    <AuthContext.Provider value={{handleSignIn}}>
+    <AuthContext.Provider value={{handleSignIn, user}}>
       {children}
     </AuthContext.Provider>
   );

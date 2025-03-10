@@ -9,12 +9,14 @@ import {
   Alert,
 } from 'react-native';
 
+import {useNavigation} from '@react-navigation/native';
 //verificar
 
 import auth from '@react-native-firebase/auth';
 
 export default function SignUp() {
   //context
+  const navigation = useNavigation();
 
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
@@ -26,6 +28,9 @@ export default function SignUp() {
         email,
         senha,
       );
+      //testar ainda
+      navigation.goBack();
+
       await userCredential.user.updateProfile({
         displayName: nome,
       });
@@ -63,7 +68,7 @@ export default function SignUp() {
           />
         </View>
         <TouchableOpacity style={styles.SubmitButton} onPress={handleSignUp}>
-          <Text style={styles.SubmitText}>Cadastrarrrrrr </Text>
+          <Text style={styles.SubmitText}>Cadastrar </Text>
         </TouchableOpacity>
       </View>
     </View>
