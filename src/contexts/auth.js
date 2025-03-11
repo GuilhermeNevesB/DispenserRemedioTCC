@@ -33,6 +33,20 @@ function AuthProvider({children}) {
         //Alert.alert('Erro', error.message);
         console.log('erro tipo ', error.message);
         console.log('erro name ', error.name);
+        /*
+    } catch(error => {
+    if (error.code === 'auth/email-already-in-use') {
+     Alert.alert('That email address is already in use!');
+    }
+
+    if (error.code === 'auth/invalid-email') {
+     Alert.alert('That email address is invalid!');
+    }
+
+    console.error(error);
+  });
+
+        */
       }
     }
   }
