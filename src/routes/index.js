@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {View, ActivityIndicator} from 'react-native';
+import {View} from 'react-native';
 
 import AuthRoutes from './auth.routes';
 

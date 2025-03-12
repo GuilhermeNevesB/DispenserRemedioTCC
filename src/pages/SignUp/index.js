@@ -1,5 +1,5 @@
 //verificar se vamos deixar a funçao
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   View,
   Text,
@@ -7,22 +7,29 @@ import {
   TouchableOpacity,
   StyleSheet,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 //verificar
 
 import auth from '@react-native-firebase/auth';
+import {AuthContext} from '../../contexts/auth';
 
 export default function SignUp() {
   //context
   const navigation = useNavigation();
+
+  //load pagina
+
+  const {loadingAuth} = useContext(AuthContext);
 
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
   const handleSignUp = async () => {
+    if (nome === '' || email === '' || senha === '') return;
     try {
       const userCredential = await auth().createUserWithEmailAndPassword(
         email,
@@ -34,7 +41,7 @@ export default function SignUp() {
       await userCredential.user.updateProfile({
         displayName: nome,
       });
-      Alert.alert('Sucesso', 'Usuário cadastrado com sucesso!');
+      // Alert.alert('Sucesso', 'Usuário cadastrado com sucesso!');
     } catch (error) {
       Alert.alert('Erro', error.message);
     }
@@ -65,10 +72,15 @@ export default function SignUp() {
             placeholder="Sua senha"
             value={senha}
             onChangeText={setSenha}
+            secureTextEntry={true}
           />
         </View>
         <TouchableOpacity style={styles.SubmitButton} onPress={handleSignUp}>
-          <Text style={styles.SubmitText}>Cadastrar </Text>
+          {loadingAuth ? (
+            <ActivityIndicator size={20} color="#fff" />
+          ) : (
+            <Text style={styles.SubmitText}>Cadastrar </Text>
+          )}
         </TouchableOpacity>
       </View>
     </View>

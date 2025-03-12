@@ -6,15 +6,27 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  ActivityIndicator,
+  useEffect,
 } from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 import {AuthContext} from '../../contexts/auth';
 
+import {onAuthStateChanged} from 'firebase/auth';
+import auth from '@react-native-firebase/auth';
+
 //verificar como vai ser
 
 export default function SignIn() {
-  const {handleSignIn} = useContext(AuthContext);
+  /*  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber; // unsubscribe on unmount
+  }, []);
+
+  */
+
+  const {handleSignIn, loadingAuth} = useContext(AuthContext);
   const navigation = useNavigation();
   //para login
 
@@ -50,7 +62,11 @@ export default function SignIn() {
           style={styles.SubmitButton}
           activeOpacity={0.5}
           onPress={() => handleSignIn(email, senha)}>
-          <Text style={styles.SubmitText}>Acessar</Text>
+          {loadingAuth ? (
+            <ActivityIndicator size={20} color="#fff" />
+          ) : (
+            <Text style={styles.SubmitText}>Acessar</Text>
+          )}
         </TouchableOpacity>
         <TouchableOpacity style={styles.Link}>
           <Text

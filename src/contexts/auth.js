@@ -1,4 +1,4 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useState, useEffect} from 'react';
 import {Alert} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
@@ -8,22 +8,74 @@ export const AuthContext = createContext({});
 
 function AuthProvider({children}) {
   const [user, setUser] = useState({});
+  const [loadingAuth, setLoadingAuth] = useState(false);
   const navigation = useNavigation();
+  //const [loading, setLoading] = useState(true); // Novo estado para carregamento inicial
+  /*
+  useEffect(() => {
+    const unsubscribe = auth().onAuthStateChanged(setUser);
+    //  navigation.navigate('AppRoutes');
+    navigation.navigate('AppRoutes');
+    return unsubscribe;
+  }, []);
+  */
+
+  /*
+  // Monitora mudanças no estado de autenticação
+  useEffect(() => {
+    const unsubscribe = auth().onAuthStateChanged(userAuth => {
+      if (userAuth) {
+        setUser({
+          email: userAuth.email,
+          nome: userAuth.displayName || 'Usuário',
+          status: 'Ativo',
+        });
+        navigation.navigate('AppRoutes'); // Redireciona para a área logada
+      } else {
+        setUser(null);
+      }
+      setLoading(false); // Termina o carregamento inicial
+    });
+
+    return () => unsubscribe();
+  }, []);
+  */
+  useEffect(() => {
+    const unsubscribe = auth().onAuthStateChanged(userAuth => {
+      if (userAuth) {
+        setUser({
+          email: userAuth.email,
+          nome: userAuth.displayName || 'Usuário', // Carrega o nome corretamente
+          status: 'Ativo',
+        });
+        navigation.navigate('AppRoutes'); // Redireciona para a área logada
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [navigation]);
 
   async function handleSignIn(email, senha) {
+    setLoadingAuth(true);
     try {
       await auth().signInWithEmailAndPassword(email, senha);
-      const userAuth = auth().currentUser;
+      //const userAuth = auth().currentUser;
       Alert.alert('Sucesso', 'Login realizado com sucesso!');
+
       // console.log('usuario', userAuth.displayName);
-      setUser({
+      /* setUser({
         email: email,
         status: 'Ativo',
         nome: userAuth.displayName,
       });
+      */
+      setLoadingAuth(false);
 
       navigation.navigate('AppRoutes');
     } catch (error) {
+      setLoadingAuth(false);
       if (error.name === 'TypeError') {
         Alert.alert('Os campos nao podem estar vazios');
       }
@@ -52,7 +104,7 @@ function AuthProvider({children}) {
   }
 
   return (
-    <AuthContext.Provider value={{handleSignIn, user}}>
+    <AuthContext.Provider value={{handleSignIn, user, loadingAuth}}>
       {children}
     </AuthContext.Provider>
   );
