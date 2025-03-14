@@ -20,6 +20,7 @@ function AppRoutes() {
         component={Home}
         options={{
           tabBarIcon: renderTabIcon('home'),
+          headerShown: false,
         }}
       />
       <Tab.Screen
@@ -27,13 +28,15 @@ function AppRoutes() {
         component={Profile}
         options={{
           tabBarIcon: renderTabIcon('archive'),
+          headerShown: false,
         }}
       />
       <Tab.Screen
         name="Settings"
         component={Settings}
         options={{
-          tabBarIcon: renderTabIcon('bell'),
+          tabBarIcon: renderTabIcon('users'),
+          headerShown: false,
         }}
       />
     </Tab.Navigator>

@@ -35,8 +35,14 @@ export default function SignUp() {
         email,
         senha,
       );
-      //testar ainda
-      navigation.goBack();
+
+      /*
+      //  se formos fazer voltar para a tela de login, tem que mudar aqui, verificar depois
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'SignIn'}],
+      });
+      */
 
       await userCredential.user.updateProfile({
         displayName: nome,

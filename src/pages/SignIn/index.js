@@ -7,7 +7,6 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
-  useEffect,
 } from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
@@ -19,13 +18,6 @@ import auth from '@react-native-firebase/auth';
 //verificar como vai ser
 
 export default function SignIn() {
-  /*  useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
-  }, []);
-
-  */
-
   const {handleSignIn, loadingAuth} = useContext(AuthContext);
   const navigation = useNavigation();
   //para login

@@ -26,7 +26,7 @@ function AuthRoutes() {
             borderBottomColor: '#00b94a',
           },
           headerTintColor: '#fff',
-          headerTitle: 'Voltar',
+          headerTitle: 'Voltar ao Login',
         }}
       />
       <AuthStack.Screen
