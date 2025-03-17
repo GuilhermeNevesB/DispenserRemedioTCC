@@ -1,37 +1,48 @@
 import React, {useContext} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-  Button,
-} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 
 import {AuthContext} from '../../contexts/auth';
 
+import {useNavigation} from '@react-navigation/native';
+
 export default function Home() {
   const {user} = useContext(AuthContext);
+  const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
-      <View style={styles.background}>
-        <Image style={styles.Logo} source={require('../../assets/Logo.png')} />
+    <View contentContainerStyle={styles.container}>
+      <View style={styles.header}>
+        <Image style={styles.logo} source={require('../../assets/Logo.png')} />
+        <Text style={styles.texto}>Bem-vindo: {user.name}</Text>
+        <Text style={styles.texto}>Email: {user.email}</Text>
+        <Text style={styles.texto}>Status: {user.status}</Text>
       </View>
-      <View style={styles.vwtexto}>
-        <Text style={styles.texto}>Bem vindo: {user.name}</Text>
-        <Text> testando os debaixo</Text>
-        <Text>Bem vindo: {user.email}</Text>
-        <Text>Bem vindo: {user.status}</Text>
-      </View>
-      <View style={styles.bot}>
-        <TouchableOpacity>
-          <Text style={styles.texbot}> Teste 1 </Text>
+
+      <View style={styles.buttonsContainer}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Register')}>
+          <Text style={styles.buttonText}>Cadastrar Remédio</Text>
         </TouchableOpacity>
-      </View>
-      <View>
-        <TouchableOpacity>
-          <Text>testo 2</Text>
+
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Ver Remédios</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Histórico</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Calendário</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Conexão de Rede</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Favoritos</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -39,36 +50,48 @@ export default function Home() {
 }
 
 const styles = StyleSheet.create({
-  background: {
+  container: {
+    flexGrow: 1,
+    alignItems: 'center',
+    paddingVertical: 20,
+  },
+  header: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'red',
+    marginBottom: 40,
   },
-  container: {
-    flex: 1,
-    marginTop: 40,
-  },
-  Logo: {
-    marginBottom: 25,
+  logo: {
     width: 75,
     height: 75,
-  },
-  vwtexto: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'blue',
+    marginBottom: 15,
   },
   texto: {
-    fontSize: 20,
+    fontSize: 18,
+    color: '#333',
   },
-  bot: {
+  buttonsContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     justifyContent: 'center',
-
-    alignItems: 'flex-start',
-    marginLeft: 30,
-    marginTop: 30,
+    gap: 50, //esse
+    paddingHorizontal: 20,
+    marginTop: 40, //esse
   },
-  texbot: {
-    fontSize: 25,
+  button: {
+    backgroundColor: '#3b3bdf',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginVertical: 5,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 150,
+    maxWidth: '100%',
+  },
+  buttonText: {
+    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'white',
   },
 });

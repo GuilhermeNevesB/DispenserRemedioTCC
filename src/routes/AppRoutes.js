@@ -1,9 +1,14 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from '../pages/Home';
-import Profile from '../pages/Profile';
+import Report from '../pages/Report';
 import Settings from '../pages/Settings';
+import Register from '../pages/Register';
 import Feather from 'react-native-vector-icons/Feather';
+
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 const Tab = createBottomTabNavigator();
 
@@ -24,10 +29,10 @@ function AppRoutes() {
         }}
       />
       <Tab.Screen
-        name="Profile"
-        component={Profile}
+        name="Report"
+        component={Report}
         options={{
-          tabBarIcon: renderTabIcon('archive'),
+          tabBarIcon: renderTabIcon('home'),
           headerShown: false,
         }}
       />
@@ -43,4 +48,21 @@ function AppRoutes() {
   );
 }
 
-export default AppRoutes;
+//export default AppRoutes ;
+
+export default function AppNavigator() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Main"
+        component={AppRoutes}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Register"
+        component={Register}
+        options={{title: 'Cadastro de Remédio'}}
+      />
+    </Stack.Navigator>
+  );
+}
