@@ -16,6 +16,7 @@ export default function Home() {
         <Text style={styles.texto}>Bem-vindo: {user.name}</Text>
         <Text style={styles.texto}>Email: {user.email}</Text>
         <Text style={styles.texto}>Status: {user.status}</Text>
+        <Text style={styles.texto}>senha: {user.uid}</Text>
       </View>
 
       <View style={styles.buttonsContainer}>
@@ -25,7 +26,9 @@ export default function Home() {
           <Text style={styles.buttonText}>Cadastrar Remédio</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('ViewRemedios')}>
           <Text style={styles.buttonText}>Ver Remédios</Text>
         </TouchableOpacity>
 

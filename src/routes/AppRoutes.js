@@ -4,6 +4,7 @@ import Home from '../pages/Home';
 import Report from '../pages/Report';
 import Settings from '../pages/Settings';
 import Register from '../pages/Register';
+import ViewRemedios from '../pages/ViewRemedios';
 import Feather from 'react-native-vector-icons/Feather';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -62,6 +63,11 @@ export default function AppNavigator() {
         name="Register"
         component={Register}
         options={{title: 'Cadastro de Remédio'}}
+      />
+      <Stack.Screen
+        name="ViewRemedios"
+        component={ViewRemedios}
+        options={{title: 'Ver Remedios'}}
       />
     </Stack.Navigator>
   );

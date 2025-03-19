@@ -20,6 +20,7 @@ function AuthProvider({children}) {
           email: userAuth.email,
           name: userAuth.displayName || 'Usuário',
           status: 'Ativo',
+          uid: userAuth.uid,
         });
         //nao permite voltar
 
