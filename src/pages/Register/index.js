@@ -20,22 +20,6 @@ export default function Register() {
   const [horarioRemed, SetHorarioRemed] = useState('');
   const {user} = useContext(AuthContext);
 
-  // async function register() {
-  //   try {
-  //     await firestore().collection('users').doc(user.uid).set({
-  //       nomeRemedio: nomeRemedio,
-  //       QuantidadePilulas: quantidade,
-  //       QuantidadeDiaria: quantDiaria,
-  //       HorarioRemedio: horarioRemed,
-  //     });
-
-  //     console.log('Cadastrado com sucesso');
-  //   } catch (erro) {
-  //     console.log('Erro ao cadastrar:', erro);
-  //   }
-
-  //   console.log(nomeRemedio);
-  // }
   async function register() {
     await firestore()
       .collection(user.uid)

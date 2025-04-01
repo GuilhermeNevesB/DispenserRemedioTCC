@@ -11,9 +11,16 @@ function AuthProvider({children}) {
   const [loadingAuth, setLoadingAuth] = useState(false);
   const navigation = useNavigation();
 
+  //eu uso esse contexto para me dar o nome em toda a aplicaçao
+  //os nomes e as info que estao ali
+
   useEffect(() => {
     const currentRoute = navigation.getCurrentRoute();
+
+    //tenho que retirar depois do teste
+
     console.log('Tela atual:', currentRoute?.name);
+
     const unsubscribe = auth().onAuthStateChanged(userAuth => {
       if (userAuth) {
         setUser({
@@ -46,13 +53,11 @@ function AuthProvider({children}) {
       await auth().signInWithEmailAndPassword(email, senha);
       Alert.alert('Sucesso', 'Login realizado com sucesso!');
       setLoadingAuth(false);
-      //verificar questao de voltar com botao direiro
+
       navigation.reset({
         index: 0,
         routes: [{name: 'AppRoutes'}],
       });
-
-      //navigation.navigate('AppRoutes');
     } catch (error) {
       setLoadingAuth(false);
       if (error.name === 'TypeError') {

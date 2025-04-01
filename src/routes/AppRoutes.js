@@ -2,7 +2,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from '../pages/Home';
 import Report from '../pages/Report';
-import Settings from '../pages/Settings';
+import Users from '../pages/Users';
 import Register from '../pages/Register';
 import ViewRemedios from '../pages/ViewRemedios';
 import Feather from 'react-native-vector-icons/Feather';
@@ -38,8 +38,8 @@ function AppRoutes() {
         }}
       />
       <Tab.Screen
-        name="Settings"
-        component={Settings}
+        name="Usuario"
+        component={Users}
         options={{
           tabBarIcon: renderTabIcon('users'),
           headerShown: false,
@@ -49,7 +49,7 @@ function AppRoutes() {
   );
 }
 
-//export default AppRoutes ;
+// export default AppRoutes ;
 
 export default function AppNavigator() {
   return (
