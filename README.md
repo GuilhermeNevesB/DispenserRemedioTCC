@@ -9,7 +9,7 @@ Este projeto consiste no desenvolvimento de um aplicativo em **React Native CLI*
 - **React Native CLI**
 - **ESP32**
 - **Bluetooth/Wi-Fi** (para comunicação entre o app e o ESP32)
-- **Firebase** (armazenamento de dados app)
+- **Firebase** (armazenamento de dados app).
 
 ## Contribuição
 
