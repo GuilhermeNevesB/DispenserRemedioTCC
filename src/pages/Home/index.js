@@ -14,9 +14,9 @@ export default function Home() {
       <View style={styles.header}>
         <Image style={styles.logo} source={require('../../assets/Logo.png')} />
         <Text style={styles.texto}>Bem-vindo: {user.name}</Text>
-        <Text style={styles.texto}>Email: {user.email}</Text>
+        {/* <Text style={styles.texto}>Email: {user.email}</Text>
         <Text style={styles.texto}>Status: {user.status}</Text>
-        <Text style={styles.texto}>senha: {user.uid}</Text>
+        <Text style={styles.texto}>senha: {user.uid}</Text> */}
       </View>
 
       <View style={styles.buttonsContainer}>
@@ -62,11 +62,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 40,
+
+    marginTop: 40,
   },
   logo: {
     width: 75,
     height: 75,
     marginBottom: 15,
+
+    marginTop: 40,
   },
   texto: {
     fontSize: 18,
@@ -79,6 +83,12 @@ const styles = StyleSheet.create({
     gap: 50, //esse
     paddingHorizontal: 20,
     marginTop: 40, //esse
+
+    // width: '90%',
+    backgroundColor: '#fff',
+    padding: 80,
+    borderRadius: 30,
+    elevation: 3,
   },
   button: {
     backgroundColor: '#3b3bdf',
@@ -88,7 +98,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
-    width: 150,
+    width: '40%',
     maxWidth: '100%',
   },
   buttonText: {

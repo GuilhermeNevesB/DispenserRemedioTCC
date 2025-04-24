@@ -12,14 +12,15 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {AuthContext} from '../../contexts/auth';
 
-import {onAuthStateChanged} from 'firebase/auth';
-import auth from '@react-native-firebase/auth';
+//import {onAuthStateChanged} from 'firebase/auth';
+//import auth from '@react-native-firebase/auth';
 
 //verificar como vai ser
 
 export default function SignIn() {
   const {handleSignIn, loadingAuth} = useContext(AuthContext);
   const navigation = useNavigation();
+
   //para login
 
   const [email, setEmail] = useState('');
