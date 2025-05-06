@@ -67,7 +67,7 @@ export default function AppNavigator() {
       <Stack.Screen
         name="ViewRemedios"
         component={ViewRemedios}
-        options={{title: 'Ver Remedios'}}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );

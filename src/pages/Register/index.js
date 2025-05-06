@@ -23,24 +23,28 @@ export default function Register() {
   const {user} = useContext(AuthContext);
 
   async function register() {
-    await firestore()
-      .collection(user.uid)
-      .add({
-        nomeRemedio: nomeRemedio,
-        QuantidadePilulas: quantidade,
-        QuantidadeDiaria: quantDiaria,
+    if (nomeRemedio === '' || quantidade === '' || quantDiaria === '') {
+      Alert.alert('', 'Ops! Você esqueceu de preencher os campos');
+    } else {
+      await firestore()
+        .collection(user.uid)
+        .add({
+          nomeRemedio: nomeRemedio,
+          QuantidadePilulas: quantidade,
+          QuantidadeDiaria: quantDiaria,
 
-        HorarioRemedio1: horariosRemed[0],
-        HorarioRemedio2: horariosRemed[1],
-        HorarioRemedio3: horariosRemed[2],
-        HorarioRemedio4: horariosRemed[3],
-      })
-      .then(() => {
-        Alert.alert('Sucesso', 'Remédio cadastrado com sucesso!');
-        SetNomeRemedio('');
-        SetQuantidade('');
-        SetQuantDiaria('');
-      });
+          HorarioRemedio1: horariosRemed[0],
+          HorarioRemedio2: horariosRemed[1],
+          HorarioRemedio3: horariosRemed[2],
+          HorarioRemedio4: horariosRemed[3],
+        })
+        .then(() => {
+          Alert.alert('Sucesso', 'Remédio cadastrado com sucesso!');
+          SetNomeRemedio('');
+          SetQuantidade('');
+          SetQuantDiaria('');
+        });
+    }
   }
 
   const frequen = () => {
