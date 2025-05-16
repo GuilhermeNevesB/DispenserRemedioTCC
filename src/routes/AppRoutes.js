@@ -4,6 +4,7 @@ import Home from '../pages/Home';
 import Report from '../pages/Report';
 import Users from '../pages/Users';
 import Register from '../pages/Register';
+import History from '../pages/History';
 import ViewRemedios from '../pages/ViewRemedios';
 import Feather from 'react-native-vector-icons/Feather';
 
@@ -69,6 +70,7 @@ export default function AppNavigator() {
         component={ViewRemedios}
         options={{headerShown: false}}
       />
+      <Stack.Screen name="History" component={History} />
     </Stack.Navigator>
   );
 }

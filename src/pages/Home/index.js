@@ -12,11 +12,14 @@ export default function Home() {
   return (
     <View contentContainerStyle={styles.container}>
       <View style={styles.header}>
-        <Image style={styles.logo} source={require('../../assets/Logo.png')} />
+        <Image
+          style={styles.logo}
+          source={require('../../assets/LogoOrig.png')}
+        />
         <Text style={styles.texto}>Bem-vindo: {user.name}</Text>
         {/* <Text style={styles.texto}>Email: {user.email}</Text>
-        <Text style={styles.texto}>Status: {user.status}</Text>
-        <Text style={styles.texto}>senha: {user.uid}</Text> */}
+        <Text style={styles.texto}>Status: {user.status}</Text>*/}
+        <Text style={styles.texto}>senha: {user.uid}</Text>
       </View>
 
       <View style={styles.buttonsContainer}>
@@ -32,7 +35,9 @@ export default function Home() {
           <Text style={styles.buttonText}>Ver Remédios</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('History')}>
           <Text style={styles.buttonText}>Histórico</Text>
         </TouchableOpacity>
 
@@ -61,16 +66,16 @@ const styles = StyleSheet.create({
   header: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 40,
+    //marginBottom: 20,
 
-    marginTop: 40,
+    marginTop: 10,
   },
   logo: {
-    width: 75,
-    height: 75,
+    width: 200,
+    height: 200,
     marginBottom: 15,
 
-    marginTop: 40,
+    marginTop: 20,
   },
   texto: {
     fontSize: 18,
