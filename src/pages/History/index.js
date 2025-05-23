@@ -28,8 +28,6 @@ export default function History() {
     return () => unsubscribe();
   }, [user]);
 
-  console.log('teste de user ', logs);
-
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Histórico de Remédios</Text>
@@ -51,7 +49,7 @@ export default function History() {
           </View>
         ))
       ) : (
-        <Text style={styles.empty}>Nenhum remédio encontrado.</Text>
+        <Text style={styles.empty}>Nenhum log encontrado.</Text>
       )}
     </ScrollView>
   );

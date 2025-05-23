@@ -18,8 +18,8 @@ export default function Home() {
         />
         <Text style={styles.texto}>Bem-vindo: {user.name}</Text>
         {/* <Text style={styles.texto}>Email: {user.email}</Text>
-        <Text style={styles.texto}>Status: {user.status}</Text>*/}
-        <Text style={styles.texto}>senha: {user.uid}</Text>
+        <Text style={styles.texto}>Status: {user.status}</Text>
+        <Text style={styles.texto}>senha: {user.uid}</Text>*/}
       </View>
 
       <View style={styles.buttonsContainer}>
@@ -41,16 +41,14 @@ export default function Home() {
           <Text style={styles.buttonText}>Histórico</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Calendario')}>
           <Text style={styles.buttonText}>Calendário</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Conexão de Rede</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Favoritos</Text>
         </TouchableOpacity>
       </View>
     </View>

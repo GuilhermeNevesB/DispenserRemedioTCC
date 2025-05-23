@@ -7,6 +7,7 @@ import Register from '../pages/Register';
 import History from '../pages/History';
 import ViewRemedios from '../pages/ViewRemedios';
 import Feather from 'react-native-vector-icons/Feather';
+import Calendario from '../pages/Calendario';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -71,6 +72,7 @@ export default function AppNavigator() {
         options={{headerShown: false}}
       />
       <Stack.Screen name="History" component={History} />
+      <Stack.Screen name="Calendario" component={Calendario} />
     </Stack.Navigator>
   );
 }
